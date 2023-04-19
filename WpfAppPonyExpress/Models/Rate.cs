@@ -11,8 +11,7 @@ namespace WpfAppPonyExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Rate
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,9 +21,7 @@ namespace WpfAppPonyExpress.Models
         }
     
         public int RateId { get; set; }
-       // [ForeignKey("ServiceId")]
         public int ServiceId { get; set; }
-       // [ForeignKey("ZoneId")]
         public int ZoneId { get; set; }
         public int Weight { get; set; }
         public int Price { get; set; }

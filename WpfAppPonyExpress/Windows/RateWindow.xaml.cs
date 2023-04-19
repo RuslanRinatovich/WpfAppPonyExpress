@@ -28,8 +28,7 @@ namespace WpfAppPonyExpress.Windows
             InitializeComponent();
             currentItem = p;
 
-            MessageBox.Show(currentItem.ServiceId.ToString());
-            MessageBox.Show(currentItem.Service.Name);
+          
             List<Service> services = DataDBEntities.GetContext().Services.OrderBy(x=>x.Name).ToList();
 
             ComboBoxService.ItemsSource = services;

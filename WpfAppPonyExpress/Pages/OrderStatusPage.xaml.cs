@@ -107,7 +107,6 @@ namespace WpfAppPonyExpress.Pages
                 else
                 {
                     DataDBEntities.GetContext().Entry(window.currentItem).Reload();
-                    //DataDBEntities.GetContext().refre
                     LoadData();
                 }
             }

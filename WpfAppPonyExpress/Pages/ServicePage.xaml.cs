@@ -92,7 +92,7 @@ namespace WpfAppPonyExpress.Pages
 
 
                 ServiceWindow window = new ServiceWindow(selected);
-                   
+
                 if (window.ShowDialog() == true)
                 {
                     // получаем измененный объект
@@ -103,6 +103,11 @@ namespace WpfAppPonyExpress.Pages
                         LoadData();
                         MessageBox.Show("Запись изменена", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
+                }
+                else
+                {
+                    DataDBEntities.GetContext().Entry(window.currentItem).Reload();
+                    LoadData();
                 }
             }
             catch

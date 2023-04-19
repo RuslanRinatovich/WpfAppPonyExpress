@@ -53,7 +53,7 @@ namespace WpfAppPonyExpress.Pages
 
                 MessageBox.Show(selected.Service.Name);
                 RateWindow window = new RateWindow(selected);
-             
+
                 if (window.ShowDialog() == true)
                 {
                     if (window.currentItem != null)
@@ -63,6 +63,11 @@ namespace WpfAppPonyExpress.Pages
                         LoadData();
                         MessageBox.Show("Запись изменена", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
+                }
+                else
+                {
+                    DataDBEntities.GetContext().Entry(window.currentItem).Reload();
+                    LoadData();
                 }
             }
             catch

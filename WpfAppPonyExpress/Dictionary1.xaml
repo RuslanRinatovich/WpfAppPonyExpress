@@ -63,7 +63,8 @@
     <!--стиль для меток ListBoxItem -->
     <Style TargetType="ListBoxItem" x:Key="good_item">
         <Setter Property="Background" Value="{Binding GetColor}" />
-        <!--<Setter Property="BorderBrush" Value="{StaticResource akcent}"/>-->
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
     </Style>
 </ResourceDictionary>

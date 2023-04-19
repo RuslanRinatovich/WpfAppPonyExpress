@@ -92,7 +92,7 @@ namespace WpfAppPonyExpress.Pages
                 PickupPoint selected = DtData.SelectedItem as PickupPoint;
 
                 PickupPointWindow window = new PickupPointWindow(selected);
-                   
+
 
                 if (window.ShowDialog() == true)
                 {
@@ -103,6 +103,11 @@ namespace WpfAppPonyExpress.Pages
                         LoadData();
                         MessageBox.Show("Запись изменена", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
+                }
+                else
+                {
+                    DataDBEntities.GetContext().Entry(window.currentItem).Reload();
+                    LoadData();
                 }
             }
             catch
