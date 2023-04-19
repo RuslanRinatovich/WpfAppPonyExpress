@@ -50,7 +50,7 @@ namespace WpfAppPonyExpress
 
         private void Window_Closed(object sender, EventArgs e)
         {
-         //   Owner.Show();
+            Owner.Show();
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -148,6 +148,11 @@ namespace WpfAppPonyExpress
         private void BtnRate_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new RatePage());
+        }
+
+        private void AddNewOrder_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new AddOrderPage());
         }
     }
 }

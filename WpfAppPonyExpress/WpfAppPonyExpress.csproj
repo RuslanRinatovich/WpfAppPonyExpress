@@ -137,6 +137,9 @@
     <Compile Include="Models\Zone.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddOrderPage.xaml.cs">
+      <DependentUpon>AddOrderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrderStatusPage.xaml.cs">
       <DependentUpon>OrderStatusPage.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <DependentUpon>ServiceWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddOrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

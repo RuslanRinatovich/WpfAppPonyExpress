@@ -26,6 +26,11 @@
             </Button>-->
             <materialDesign:PackIcon x:Name="PackAccount" Kind="Account" Width="30"  Height="40" VerticalAlignment="Center" Cursor="Hand" MouseDown="PackIcon_MouseDown" />
             <TextBlock x:Name="TextBlockUserName" Text="Иванов" VerticalAlignment="Center" FontSize="14" Margin="5"/>
+            <materialDesign:PackIcon x:Name="AddNewOrder" Kind="PlusBold" Width="30"  Height="40" VerticalAlignment="Center"
+                                     Cursor="Hand" 
+                                     materialDesign:HintAssist.Hint="Создать новую заявку" MouseDown="AddNewOrder_MouseDown"
+                                     />
+
             <materialDesign:PackIcon x:Name="PackLogout" Kind="Logout" Width="30"  Height="40" VerticalAlignment="Center" Cursor="Hand" MouseDown="PackIcon_MouseDown_1" />
 
             
