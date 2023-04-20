@@ -137,6 +137,9 @@
     <Compile Include="Models\Zone.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddOrderPage.xaml.cs">
+      <DependentUpon>AddOrderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrderStatusPage.xaml.cs">
       <DependentUpon>OrderStatusPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,9 @@
     </Compile>
     <Compile Include="Pages\ZonePages.xaml.cs">
       <DependentUpon>ZonePages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\OrderTicketWindow.xaml.cs">
+      <DependentUpon>OrderTicketWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\PickupPointWindow.xaml.cs">
       <DependentUpon>PickupPointWindow.xaml</DependentUpon>
@@ -165,6 +171,10 @@
       <DependentUpon>ServiceWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddOrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ZonePages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OrderTicketWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,6 +319,15 @@
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

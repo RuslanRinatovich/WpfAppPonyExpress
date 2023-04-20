@@ -103,7 +103,7 @@
                 <DataGridTextColumn Binding="{Binding Weight, StringFormat='f'}" Header="Вес" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Price, StringFormat='c', ConverterCulture='ru-RU'}"
                                     Header="Стоимость" Width="*"/>
-                
+
             </DataGrid.Columns>
         </DataGrid>
 
@@ -135,12 +135,11 @@
                     Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button Width="100" Height="30" 
                     Content="Отмена" 
-                    x:Name="BtnOk" 
+                    x:Name="BtnOk" Click="BtnOk_Click" 
                     />
-            
+
             <Button x:Name="BtnBuyItem"  Content="Оформить" 
-                    Width="120"  />
+                    Width="120" Click="BtnBuyItem_Click"  />
         </StackPanel>
     </Grid>
 </Page>
- 
