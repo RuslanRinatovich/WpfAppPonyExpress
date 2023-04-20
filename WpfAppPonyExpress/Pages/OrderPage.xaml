@@ -52,7 +52,9 @@ SelectedValuePath="OrderId" Grid.Row="2" Grid.Column="0" SelectionChanged="ListB
                                Margin="5 0 5 0"/>
 
                         <StackPanel Grid.Column="1" >
-                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=GetUser}" Width="Auto" HorizontalAlignment="Left" />
+                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=OrderID, StringFormat={}Заказ №: {0}}" Width="Auto" HorizontalAlignment="Left" />
+                            <!--<TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=GetUser}" Width="Auto" HorizontalAlignment="Left" />-->
+                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=OrderStatu.Name, StringFormat={}Статус заказа: {0}}" Width="Auto" HorizontalAlignment="Left" />
                             <TextBlock Margin="2" FontSize="16" Text="{Binding Path=OrderCreateDate, StringFormat='d', ConverterCulture='ru-RU'}" Width="Auto" HorizontalAlignment="Left" />
                             <TextBlock Margin="2" FontSize="16" Text="{Binding Path=OrderDeliveryDate, StringFormat='d', ConverterCulture='ru-RU'}" Width="Auto" HorizontalAlignment="Left" />
                             <TextBlock Margin="2" FontSize="16" Text="{Binding Path=PickupPoint.Address, StringFormat={}Пункт выдачи: {0}}" Width="Auto" HorizontalAlignment="Left" />

@@ -71,6 +71,7 @@ namespace WpfAppPonyExpress.Pages
             order.OrderCreateDate = DateTime.Now;
             order.OrderStatusID = 1;
             order.OrderDeliveryDate = DateTime.Now.AddDays(1);
+            order.UserName = Manager.CurrentUser.UserName;
             Random rnd = new Random();
             order.GetCode = rnd.Next(100, 1000);
             return order;
@@ -117,11 +118,25 @@ namespace WpfAppPonyExpress.Pages
             if ((UpDownWeight.Value > 0) && (ComboService.SelectedIndex > -1) && (ComboZone.SelectedIndex > -1))
             {
                 currentData = currentData.Where(p => p.Weight >= UpDownWeight.Value).ToList().GetRange(0, 1);
+                if (currentData.Count > 0)
+                {
+                    _currentOrder.Rate = currentData[0];
+                    _currentOrder.RateId = currentData[0].RateId;
+                }
+                else
+                {
+                    _currentOrder.RateId = null;
+                }
+
             }
             else
             if (UpDownWeight.Value > 0)
             {
                 currentData = currentData.Where(p => p.Weight >= UpDownWeight.Value).ToList();
+            }
+            else
+            {
+                _currentOrder.RateId = null;
             }
 
             DataGridRate.ItemsSource = currentData;
@@ -139,17 +154,41 @@ namespace WpfAppPonyExpress.Pages
                 Manager.MainFrame.GoBack();
         }
 
+        private StringBuilder CheckFields()
+        {
+            StringBuilder s = new StringBuilder();
+            // проверка полей на содержимое
+            if (ComboService.SelectedIndex == -1)
+                s.AppendLine("Выберите тип услуги");
+            if (ComboZone.SelectedIndex == -1)
+                s.AppendLine("Выберите расстояние");
+            if (UpDownWeight.Value <= 0)
+                s.AppendLine("Укажите вес отправления");
+                      
+            if (_currentOrder.RateId == null)
+                s.AppendLine("Отсутвует тариф");
+            if (ComboPickupPoint.SelectedItem == null)
+                s.AppendLine("не выбран пункт выдачи");
+
+            return s;
+        }
+
+
+
         private void BtnBuyItem_Click(object sender, RoutedEventArgs e)
         {
-            
-                // если не выбран пункт выдачи, отображаем в сообщение
-                if (ComboPickupPoint.SelectedItem == null)
-                {
-                    MessageBox.Show("не выбран пункт выдачи");
-                    return;
-                }
 
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Оформить покупку???",
+            StringBuilder _error = CheckFields();
+            // если ошибки есть, то выводим ошибки в MessageBox
+            // и прерываем выполнение 
+            if (_error.Length > 0)
+            {
+                MessageBox.Show(_error.ToString());
+                return;
+            }
+
+
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Оформить покупку???",
                     "Оформление", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
@@ -162,9 +201,8 @@ namespace WpfAppPonyExpress.Pages
                                                                     // показываем талон заказа в новом окне 
                     OrderTicketWindow orderTicketWindow = new OrderTicketWindow(_currentOrder);
                     orderTicketWindow.ShowDialog();
-                    
-                    
-                }
+                    Manager.MainFrame.GoBack();  // Возвращаемся на предыдущую форму                    
+            }
            
 
         }

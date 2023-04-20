@@ -34,7 +34,7 @@ namespace WpfAppPonyExpress
             _currentUser = Manager.CurrentUser;
             if (_currentUser != null)
             {
-                TextBlockUserName.Text = $"Вы вошли как: {_currentUser.UserName}";
+                TextBlockUserName.Text = $"Вы вошли как: {_currentUser.Clients.Single().GetFio}";
             }
             MainFrame.Navigate(new OrderPage());
             Manager.MainFrame = MainFrame;

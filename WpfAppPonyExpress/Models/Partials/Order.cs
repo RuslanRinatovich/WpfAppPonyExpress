@@ -21,7 +21,7 @@ namespace WpfAppPonyExpress.Models
         {
             get
             {
-                return $"{User.Clients.Single().Surname} {User.Clients.Single().Name} {User.Clients.Single().Phone}";
+                 return $"{User.Clients.Single().Surname} {User.Clients.Single().Name} {User.Clients.Single().Phone}";
             }
         }
 

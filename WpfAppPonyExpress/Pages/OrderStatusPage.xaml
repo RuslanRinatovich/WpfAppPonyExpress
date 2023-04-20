@@ -40,9 +40,9 @@
 
         </DataGrid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click"/>
+            <!--<Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click"/>-->
             <Button x:Name="btnChange" Content="Изменить" Click="btnChange_Click" />
-            <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
+            <!--<Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>-->
         </StackPanel>
     </Grid>
 </Page>

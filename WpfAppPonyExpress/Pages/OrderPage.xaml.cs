@@ -33,8 +33,8 @@ namespace WpfAppPonyExpress.Pages
         }
         void LoadAndInitData()
         {
-            // загрузка данных в listview сортируем по названию
-            ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+
+           
             _itemcount = ListBoxOrders.Items.Count;
             // скрываем кнопки корзины
             var statuses = DataDBEntities.GetContext().OrderStatus.OrderBy(p => p.Name).ToList();
@@ -53,6 +53,8 @@ namespace WpfAppPonyExpress.Pages
         {
             // получаем текущие данные из бд
             var currentData = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+            if (Manager.CurrentUser.RoleId == 3)
+                //currentData = DataDBEntities.GetContext().Orders.Where(p => p.UserName == Manager.CurrentUser.UserName).OrderBy(p => p.OrderID).ToList();
             // выбор только тех товаров, по определенному диапазону скидки
             if (ComboStatus.SelectedIndex > 0)
                 currentData = currentData.Where(p => p.OrderStatusID == (ComboStatus.SelectedItem as OrderStatu).Id).ToList();
@@ -108,7 +110,11 @@ namespace WpfAppPonyExpress.Pages
             if (Visibility == Visibility.Visible)
             {
                 DataDBEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+                if (Manager.CurrentUser.RoleId == 3)
+                    ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.Where(p => p.UserName == Manager.CurrentUser.UserName).OrderBy(p => p.OrderID).ToList();
+                else
+                    // загрузка данных в listview сортируем по названию
+                    ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
             }
         }
     }
