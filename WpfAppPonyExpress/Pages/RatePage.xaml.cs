@@ -51,7 +51,7 @@ namespace WpfAppPonyExpress.Pages
                 // получаем выделенный объект
                 Rate selected = (sender as Button).DataContext as Rate;
 
-                MessageBox.Show(selected.Service.Name);
+                //MessageBox.Show(selected.Service.Name);
                 RateWindow window = new RateWindow(selected);
 
                 if (window.ShowDialog() == true)
