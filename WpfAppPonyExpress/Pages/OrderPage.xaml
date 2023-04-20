@@ -76,7 +76,16 @@ SelectedValuePath="OrderId" Grid.Row="2" Grid.Column="0" SelectionChanged="ListB
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="MenuItemCancel" Header="Отменить" Click="MenuItemCancel_Click"></MenuItem>
+                    <MenuItem x:Name="MenuItemAccept" Header="Принять в работу" Click="MenuItemAccept_Click"></MenuItem>
+                    <MenuItem x:Name="MenuItemDeliver" Header="Передать в доставку" Click="MenuItemDeliver_Click"></MenuItem>
+                    <MenuItem x:Name="MenuItemInPoint" Header="В пункте выдачи" Click="MenuItemInPoint_Click"></MenuItem>
+                    <MenuItem x:Name="MenuItemGet" Header="Получено" Click="MenuItemGet_Click"></MenuItem>
+                    
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
     </Grid>
 </Page>

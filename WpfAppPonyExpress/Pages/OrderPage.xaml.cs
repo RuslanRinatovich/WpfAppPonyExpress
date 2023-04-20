@@ -109,13 +109,69 @@ namespace WpfAppPonyExpress.Pages
             //обновление данных после каждой активации окна
             if (Visibility == Visibility.Visible)
             {
-                DataDBEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                if (Manager.CurrentUser.RoleId == 3)
-                    ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.Where(p => p.UserName == Manager.CurrentUser.UserName).OrderBy(p => p.OrderID).ToList();
-                else
-                    // загрузка данных в listview сортируем по названию
-                    ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+                LoadOrders();
             }
+        }
+
+
+        void LoadOrders()
+        {
+            DataDBEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+            if (Manager.CurrentUser.RoleId == 3)
+            {
+                ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.Where(p => p.UserName == Manager.CurrentUser.UserName).OrderBy(p => p.OrderID).ToList();
+                ListBoxOrders.ContextMenu.Visibility = Visibility.Collapsed;
+            }
+
+            else
+            // загрузка данных в listview сортируем по названию
+            {
+                ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+                ListBoxOrders.ContextMenu.Visibility = Visibility.Visible;
+            }
+        }
+        private void MenuItemCancel_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(6);
+        }
+
+        void ChangeOrderStatus(byte id)
+        {
+
+           
+            // контекстное меню по нажатию правой кнопки мыши
+            // если товар не выбран, завершаем работу
+            if (_selected == null)
+                return;
+            List<string> statuses = new List<string> { "", "Создан", "Принят в работу", "Передан в доставку", "В пункте выдачи", "Получен", "Отменён" };
+            // добавляем товар в корзину
+            MessageBoxResult x = MessageBox.Show($"Вы действительно изменить статус заказа на {statuses[id]}?", "Отмена", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (x == MessageBoxResult.OK)
+            {
+                _selected.OrderStatusID = id;
+                DataDBEntities.GetContext().SaveChanges();  // Сохраняем изменения в БД
+                LoadOrders();
+            }
+        }
+
+        private void MenuItemAccept_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(2);
+        }
+
+        private void MenuItemDeliver_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(3);
+        }
+
+        private void MenuItemInPoint_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(4);
+        }
+
+        private void MenuItemGet_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(5);
         }
     }
 }
