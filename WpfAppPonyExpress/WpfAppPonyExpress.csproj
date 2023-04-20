@@ -137,12 +137,6 @@
     <Compile Include="Models\Zone.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AllOrdersPage.xaml.cs">
-      <DependentUpon>AllOrdersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AddOrderPage.xaml.cs">
-      <DependentUpon>AddOrderPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\OrderStatusPage.xaml.cs">
       <DependentUpon>OrderStatusPage.xaml</DependentUpon>
     </Compile>
