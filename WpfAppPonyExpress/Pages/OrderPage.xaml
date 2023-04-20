@@ -36,7 +36,6 @@
             </StackPanel>
         </WrapPanel>
         <TextBlock Grid.Row="1" x:Name="TextBlockCount" Width="300" HorizontalAlignment="Left" />
-        <TextBlock Grid.Row="1" x:Name="TextBlockBasketInfo" Width="200" HorizontalAlignment="Right" Margin="0 0 140 0" />
         <ListBox x:Name="ListBoxOrders" ScrollViewer.VerticalScrollBarVisibility="Visible"
 SelectedValuePath="OrderId" Grid.Row="2" Grid.Column="0" SelectionChanged="ListBoxOrders_SelectionChanged" ItemContainerStyle="{StaticResource good_item}"  >
             <ListBox.ItemTemplate  >
@@ -53,7 +52,7 @@ SelectedValuePath="OrderId" Grid.Row="2" Grid.Column="0" SelectionChanged="ListB
 
                         <StackPanel Grid.Column="1" >
                             <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=OrderID, StringFormat={}Заказ №: {0}}" Width="Auto" HorizontalAlignment="Left" />
-                            <!--<TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=GetUser}" Width="Auto" HorizontalAlignment="Left" />-->
+                            <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=GetUser}" Width="Auto" HorizontalAlignment="Left" Visibility="{Binding GetVisibility}" />
                             <TextBlock Margin="2" FontSize="16" FontWeight="Bold" Text="{Binding Path=OrderStatu.Name, StringFormat={}Статус заказа: {0}}" Width="Auto" HorizontalAlignment="Left" />
                             <TextBlock Margin="2" FontSize="16" Text="{Binding Path=OrderCreateDate, StringFormat='d', ConverterCulture='ru-RU'}" Width="Auto" HorizontalAlignment="Left" />
                             <TextBlock Margin="2" FontSize="16" Text="{Binding Path=OrderDeliveryDate, StringFormat='d', ConverterCulture='ru-RU'}" Width="Auto" HorizontalAlignment="Left" />
@@ -83,6 +82,7 @@ SelectedValuePath="OrderId" Grid.Row="2" Grid.Column="0" SelectionChanged="ListB
                     <MenuItem x:Name="MenuItemDeliver" Header="Передать в доставку" Click="MenuItemDeliver_Click"></MenuItem>
                     <MenuItem x:Name="MenuItemInPoint" Header="В пункте выдачи" Click="MenuItemInPoint_Click"></MenuItem>
                     <MenuItem x:Name="MenuItemGet" Header="Получено" Click="MenuItemGet_Click"></MenuItem>
+                    <MenuItem x:Name="MenuItemMoreInfo" Header="Подробнее" Click="MenuItemMoreInfo_Click"></MenuItem>
                     
                 </ContextMenu>
             </ListBox.ContextMenu>

@@ -40,7 +40,7 @@ namespace WpfAppPonyExpress.Pages
             _currentOrder = CreateNewOrder();
             // текущий пользователь
             _currentUser = Manager.CurrentUser;
-            if (_currentUser != null)
+            if (_currentUser != null && _currentUser.RoleId == 3)
             {
                 TextBlockOrderNumber.Text = $"Заказ №{_currentOrder.OrderID} на имя " +
                     $"{ _currentUser.Clients.SingleOrDefault().GetFio}";

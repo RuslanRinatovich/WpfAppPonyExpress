@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfAppPonyExpress.Models
 {
@@ -21,7 +22,7 @@ namespace WpfAppPonyExpress.Models
         {
             get
             {
-                 return $"{User.Clients.Single().Surname} {User.Clients.Single().Name} {User.Clients.Single().Phone}";
+                 return $"{User.Clients.Single().Surname} {User.Clients.Single().Name} телефон: {User.Clients.Single().Phone}";
             }
         }
 
@@ -33,6 +34,15 @@ namespace WpfAppPonyExpress.Models
             }
         }
 
-
+        public Visibility GetVisibility
+        {
+            get
+            {
+                if
+                (Manager.CurrentUser.RoleId == 3)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
     }
 }
