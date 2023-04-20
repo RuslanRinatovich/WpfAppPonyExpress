@@ -104,7 +104,7 @@ namespace WpfAppPonyExpress
                     BtnZone.Visibility = Visibility.Collapsed;
                     BtnPickupPoints.Visibility = Visibility.Collapsed;
                     BtnStatuses.Visibility = Visibility.Collapsed;
-                
+                    BtnOrder.Visibility = Visibility.Collapsed;
 
 
                 //if (Manager.CurrentUser.Role == true)
@@ -131,12 +131,14 @@ namespace WpfAppPonyExpress
                     BtnZone.Visibility = Visibility.Visible;
                     BtnPickupPoints.Visibility = Visibility.Visible;
                     BtnStatuses.Visibility = Visibility.Visible;
+                    BtnOrder.Visibility = Visibility.Visible;
                 }
 
                 if (Manager.CurrentUser.RoleId <= 2)
                 {
                     PackAccount.Visibility = Visibility.Collapsed;
                     AddNewOrder.Visibility = Visibility.Collapsed;
+                    BtnOrder.Visibility = Visibility.Visible;
                 }
                     if (Manager.CurrentUser.RoleId >= 2 )
                 {
@@ -192,6 +194,11 @@ namespace WpfAppPonyExpress
         private void AddNewOrder_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Navigate(new AddOrderPage());
+        }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new OrdersPage());
         }
     }
 }

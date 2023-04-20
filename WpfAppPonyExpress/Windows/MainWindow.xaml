@@ -38,24 +38,29 @@
            
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="BtnRate" 
+            <Button x:Name="BtnOrder"  
+                 Click="BtnOrder_Click" ToolTip="Заказы">
+                <materialDesign:PackIcon  Kind="AlphaOBoxOutline" Padding="0"/>
+                <!--Key-->
+            </Button>
+            <Button x:Name="BtnRate"  
                  Click="BtnRate_Click" ToolTip="Тарифы">
-                <materialDesign:PackIcon  Kind="AlphaR" Padding="0"/>
+                <materialDesign:PackIcon  Kind="AlphaRBoxOutline" Padding="0"/>
                 <!--Key-->
             </Button>
             <Button x:Name="BtnService" 
                  Click="BtnService_Click" ToolTip="Услуги">
-                <materialDesign:PackIcon  Kind="AlphaS" Padding="0"/>
-                <!--Key-->
+                <materialDesign:PackIcon  Kind="AlphaSBoxOutline" />
+                <!--Key--> 
             </Button>
             <Button x:Name="BtnZone" 
                  Click="BtnZone_Click" ToolTip="Зоны">
-                <materialDesign:PackIcon  Kind="AlphaZ" Padding="0"/>
+                <materialDesign:PackIcon  Kind="AlphaZBoxOutline" Padding="0"/>
                 <!--Key-->
             </Button>
             <Button x:Name="BtnPickupPoints" 
                  Click="BtnPickupPoints_Click" ToolTip="Зоны">
-                <materialDesign:PackIcon  Kind="AlphaP" Padding="0"/>
+                <materialDesign:PackIcon  Kind="AlphaPBoxOutline" Padding="0"/>
                 <!--Key-->
             </Button>
             <Button x:Name="BtnStatuses" 

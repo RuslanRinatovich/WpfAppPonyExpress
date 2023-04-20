@@ -37,14 +37,14 @@ namespace WpfAppPonyExpress.Windows
                 _currentOrder = order;
 
                 _currentUser = Manager.CurrentUser;
-                if (_currentUser != null)
+                if (_currentUser != null && _currentUser.RoleId==3)
                 {
                 TextBlockOrderNumber.Text = $"Заказ №{_currentOrder.OrderID} на имя " +
                     $"{ _currentUser.Clients.SingleOrDefault().GetFio} оформлен";
                 }
                 else
                 { 
-                    TextBlockOrderNumber.Text = $"Заказ №{_currentOrder.OrderID} оформлен"; 
+                    TextBlockOrderNumber.Text = $"Заказ №{_currentOrder.OrderID} оформлен на имя {_currentOrder.User.Clients.Single().GetFio}"; 
                 }
                 TextBlockTotalCost.Text = $"Итого {_currentOrder.Rate.Price:C}";
                 TextBlockOrderCreateDate.Text = _currentOrder.OrderCreateDate.ToLongDateString();

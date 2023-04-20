@@ -67,4 +67,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 
     </Style>
+    <Style TargetType="DataGridRow" x:Key="grid_item">
+        <Setter Property="Background" Value="{Binding GetColor}" />
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
 </ResourceDictionary>
