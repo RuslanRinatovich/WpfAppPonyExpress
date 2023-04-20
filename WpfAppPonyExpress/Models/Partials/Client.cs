@@ -13,7 +13,7 @@ namespace WpfAppPonyExpress.Models
             get
             {
                 if (Photo is null)
-                    return null;
+                    return System.IO.Directory.GetCurrentDirectory() + @"\Images\picture.png" ;
                 return System.IO.Directory.GetCurrentDirectory() + @"\Images\" + Photo.Trim();
             }
         }
