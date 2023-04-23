@@ -60,5 +60,23 @@ namespace WpfAppPonyExpress.Windows
             if (x == MessageBoxResult.Cancel)
                 e.Cancel = true;
         }
+
+        private void BtnRegs_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                RegsWindow regsWindow = new RegsWindow();
+            
+                if (regsWindow.ShowDialog() == true)
+                {
+                    MessageBox.Show("Ok");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка");
+            }
+        }
     }
 }

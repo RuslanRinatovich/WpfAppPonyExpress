@@ -66,7 +66,14 @@ namespace WpfAppPonyExpress.Pages
         static Order CreateNewOrder()
         {
             Order order = new Order();
-            order.OrderID = DataDBEntities.GetContext().Orders.Max(p => p.OrderID) + 1; ;
+            if (DataDBEntities.GetContext().Orders.Count() == 0)
+            {
+                order.OrderID = 1;
+            }
+            else
+            {
+                order.OrderID = DataDBEntities.GetContext().Orders.Max(p => p.OrderID) + 1; ;
+            }
             order.OrderCreateDate = DateTime.Now;
             order.OrderStatusID = 1;
             order.OrderDeliveryDate = DateTime.Now.AddDays(1);
