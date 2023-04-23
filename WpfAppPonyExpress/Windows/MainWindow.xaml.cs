@@ -32,9 +32,13 @@ namespace WpfAppPonyExpress
         void LoadData()
         {
             _currentUser = Manager.CurrentUser;
-            if (_currentUser != null)
+            if (_currentUser != null && _currentUser.RoleId == 3)
             {
-                TextBlockUserName.Text = $"Вы вошли как: {_currentUser.UserName}";
+                TextBlockUserName.Text = $"Вы вошли как: {_currentUser.Clients.Single().GetFio}";
+            }
+            if (_currentUser != null && _currentUser.RoleId < 3)
+            {
+                TextBlockUserName.Text = $"Вы вошли как: {_currentUser.Role.RoleName}";
             }
             MainFrame.Navigate(new OrderPage());
             Manager.MainFrame = MainFrame;
@@ -90,9 +94,19 @@ namespace WpfAppPonyExpress
                 BtnBack.Visibility = Visibility.Visible;
                 PackLogout.Visibility = Visibility.Collapsed;
                 PackAccount.Visibility = Visibility.Collapsed;
+                AddNewOrder.Visibility = Visibility.Collapsed;
                 TextBlockUserName.Visibility = Visibility.Collapsed;
                 if (Manager.CurrentUser is null)
                     return;
+                
+                    BtnRate.Visibility = Visibility.Collapsed;
+                    BtnService.Visibility = Visibility.Collapsed;
+                    BtnZone.Visibility = Visibility.Collapsed;
+                    BtnPickupPoints.Visibility = Visibility.Collapsed;
+                    BtnStatuses.Visibility = Visibility.Collapsed;
+                    BtnOrder.Visibility = Visibility.Collapsed;
+
+
                 //if (Manager.CurrentUser.Role == true)
                 //    BtnEditGoods.Visibility = Visibility.Collapsed;
                 //else
@@ -108,6 +122,33 @@ namespace WpfAppPonyExpress
                 PackLogout.Visibility = Visibility.Visible;
                 PackAccount.Visibility = Visibility.Visible;
                 TextBlockUserName.Visibility = Visibility.Visible;
+                AddNewOrder.Visibility = Visibility.Visible;
+
+                if (Manager.CurrentUser.RoleId == 1)
+                {
+                    BtnRate.Visibility = Visibility.Visible;
+                    BtnService.Visibility = Visibility.Visible;
+                    BtnZone.Visibility = Visibility.Visible;
+                    BtnPickupPoints.Visibility = Visibility.Visible;
+                    BtnStatuses.Visibility = Visibility.Visible;
+                    BtnOrder.Visibility = Visibility.Visible;
+                }
+
+                if (Manager.CurrentUser.RoleId <= 2)
+                {
+                    PackAccount.Visibility = Visibility.Collapsed;
+                    AddNewOrder.Visibility = Visibility.Collapsed;
+                    BtnOrder.Visibility = Visibility.Visible;
+                }
+                    if (Manager.CurrentUser.RoleId >= 2 )
+                {
+                   
+                    BtnRate.Visibility = Visibility.Collapsed;
+                    BtnService.Visibility = Visibility.Collapsed;
+                    BtnZone.Visibility = Visibility.Collapsed;
+                    BtnPickupPoints.Visibility = Visibility.Collapsed;
+                    BtnStatuses.Visibility = Visibility.Collapsed;
+                }
 
                 //if (Manager.CurrentUser is null)
                 //    return;
@@ -153,6 +194,11 @@ namespace WpfAppPonyExpress
         private void AddNewOrder_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Navigate(new AddOrderPage());
+        }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new OrdersPage());
         }
     }
 }

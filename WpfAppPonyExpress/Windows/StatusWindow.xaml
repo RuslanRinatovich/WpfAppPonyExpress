@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Название" VerticalAlignment="Center" Grid.Row="0" Margin="20 0 0 0"  Grid.Column="0" Height="16" />
 
-        <TextBox Text="{Binding Name}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Height="30" Margin="0,7" />
+        <TextBox Text="{Binding Name}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="0" Height="30" Margin="0,7"  IsReadOnly="True"/>
         <TextBlock Text="Цвет" VerticalAlignment="Center" Grid.Row="1" Margin="20 0 0 0"  Grid.Column="0" Height="16" />
         <xctk:ColorPicker x:Name="colorStatus"   SelectedColor="{Binding Color}"     
                                                DisplayColorAndName="True" AvailableColorsSortingMode="HueSaturationBrightness" Grid.Row="1" Grid.Column="1"

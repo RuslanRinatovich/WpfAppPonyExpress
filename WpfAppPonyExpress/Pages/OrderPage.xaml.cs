@@ -33,9 +33,9 @@ namespace WpfAppPonyExpress.Pages
         }
         void LoadAndInitData()
         {
-            // загрузка данных в listview сортируем по названию
-            ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
-            _itemcount = ListBoxOrders.Items.Count;
+
+           
+            
             // скрываем кнопки корзины
             var statuses = DataDBEntities.GetContext().OrderStatus.OrderBy(p => p.Name).ToList();
             statuses.Insert(0, new OrderStatu
@@ -45,7 +45,7 @@ namespace WpfAppPonyExpress.Pages
             );
             ComboStatus.ItemsSource = statuses;
             ComboStatus.SelectedIndex = 0;
-            TextBlockCount.Text = $" Результат запроса: {_itemcount} записей из {_itemcount}";
+          
         }
 
 
@@ -53,12 +53,14 @@ namespace WpfAppPonyExpress.Pages
         {
             // получаем текущие данные из бд
             var currentData = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+            if (Manager.CurrentUser.RoleId == 3)
+                currentData = DataDBEntities.GetContext().Orders.Where(p => p.UserName == Manager.CurrentUser.UserName).OrderBy(p => p.OrderID).ToList();
             // выбор только тех товаров, по определенному диапазону скидки
             if (ComboStatus.SelectedIndex > 0)
                 currentData = currentData.Where(p => p.OrderStatusID == (ComboStatus.SelectedItem as OrderStatu).Id).ToList();
 
             // выбор тех товаров, в названии которых есть поисковая строка
-            currentData = currentData.Where(p => p.GetCode.ToString().ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            currentData = currentData.Where(p => p.OrderID.ToString().ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
 
             // сортировка
             if (ComboSort.SelectedIndex >= 0)
@@ -107,9 +109,85 @@ namespace WpfAppPonyExpress.Pages
             //обновление данных после каждой активации окна
             if (Visibility == Visibility.Visible)
             {
-                DataDBEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+                LoadOrders();
             }
+        }
+
+
+        void LoadOrders()
+        {
+            DataDBEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+            if (Manager.CurrentUser.RoleId == 3)
+            {
+
+                ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.Where(p => p.UserName == Manager.CurrentUser.UserName).OrderBy(p => p.OrderID).ToList();
+                MenuItemAccept.Visibility = Visibility.Collapsed;
+                MenuItemCancel.Visibility = Visibility.Collapsed;
+                MenuItemDeliver.Visibility = Visibility.Collapsed;
+                MenuItemGet.Visibility = Visibility.Collapsed;
+                MenuItemInPoint.Visibility = Visibility.Collapsed;
+            }
+
+            else
+            // загрузка данных в listview сортируем по названию
+            {
+                ListBoxOrders.ItemsSource = DataDBEntities.GetContext().Orders.OrderBy(p => p.OrderID).ToList();
+                ListBoxOrders.ContextMenu.Visibility = Visibility.Visible;
+            }
+            _itemcount = ListBoxOrders.Items.Count;
+            TextBlockCount.Text = $" Результат запроса: {_itemcount} записей из {_itemcount}";
+        }
+        private void MenuItemCancel_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(6);
+        }
+
+        void ChangeOrderStatus(byte id)
+        {
+
+           
+            // контекстное меню по нажатию правой кнопки мыши
+            // если товар не выбран, завершаем работу
+            if (_selected == null)
+                return;
+            List<string> statuses = new List<string> { "", "Создан", "Принят в работу", "Передан в доставку", "В пункте выдачи", "Получен", "Отменён" };
+            // добавляем товар в корзину
+            MessageBoxResult x = MessageBox.Show($"Вы действительно изменить статус заказа на {statuses[id]}?", "Отмена", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (x == MessageBoxResult.OK)
+            {
+                _selected.OrderStatusID = id;
+                DataDBEntities.GetContext().SaveChanges();  // Сохраняем изменения в БД
+                LoadOrders();
+            }
+        }
+
+        private void MenuItemAccept_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(2);
+        }
+
+        private void MenuItemDeliver_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(3);
+        }
+
+        private void MenuItemInPoint_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(4);
+        }
+
+        private void MenuItemGet_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrderStatus(5);
+        }
+
+        private void MenuItemMoreInfo_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selected == null)
+                return;
+            OrderTicketWindow orderTicketWindow = new OrderTicketWindow(_selected);
+            orderTicketWindow.ShowDialog();
+
         }
     }
 }

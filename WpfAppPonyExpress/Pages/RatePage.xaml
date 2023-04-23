@@ -49,7 +49,7 @@
                   LoadingRow="DataGridRateLoadingRow">
             <DataGrid.Columns>
                 
-                <DataGridTextColumn Binding="{Binding Id}" Header="№" Width="*"/>
+                <DataGridTextColumn Binding="{Binding RateId}" Header="№" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Price, StringFormat='c', ConverterCulture='ru-RU'}" Header="Стоимость" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Weight}" Header="Вес" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Service.Name}" Header="Услуга" Width="*"/>
@@ -62,17 +62,9 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="auto" Header="Продажи">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="BtnSell" Content="..." Click="BtnSellClick" Margin="0"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BtnExcel"  Content="Excel" Grid.Row="2" Width="100" HorizontalAlignment="Right" Margin="3 0 400 0" Click="BtnExcel_Click"/>
-        <Button x:Name="BtnEditDev"  Content="Производитель" Grid.Row="2" Width="140" HorizontalAlignment="Right" Margin="3 0 240 0" Click="BtnEditDev_Click"/>
         <Button x:Name="BtnAdd" Grid.Row="2" Width="100" HorizontalAlignment="Right" Margin="3 0 120 0"
                 Content="Добавить" Click="BtnAddClick"/>
         <Button x:Name="BtnDelete" Grid.Row="2" Width="100" HorizontalAlignment="Right" Margin="3"

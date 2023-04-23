@@ -25,7 +25,7 @@
         <TextBox  Grid.Column="1" VerticalAlignment="Center" x:Name="TbName" Text="{Binding Name}" Grid.Row="0" Height="30" Margin="0,5" />
         <TextBlock Text="Описание услуги" VerticalAlignment="Center" Grid.Row="1" Margin="20,5,0,5"  Grid.Column="0" Height="30"  />
         <TextBox  Grid.Column="1"  x:Name="TbDescription" Text="{Binding Description}" Grid.Row="1" TextWrapping="Wrap" />
-        <TextBlock Text="Оклад" VerticalAlignment="Center" Grid.Row="2" Margin="20,5,0,5"  Grid.Column="0" Height="30"  />
+        <TextBlock Text="Количество дней" VerticalAlignment="Center" Grid.Row="2" Margin="20,5,0,5"  Grid.Column="0" Height="30"  />
 
         <xctk:IntegerUpDown x:Name="UpDownPay" Grid.Row="2" Grid.Column="1" Value="{Binding DaysCount}" Increment="1" Minimum="1"/>
 

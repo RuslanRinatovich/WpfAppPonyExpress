@@ -1,0 +1,100 @@
+﻿<Window x:Class="WpfAppPonyExpress.Windows.OrderTicketWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppPonyExpress.Windows"
+        mc:Ignorable="d"
+                 Title="Талон"  Style="{StaticResource base_window}" Height="300"
+        Width="600" MinHeight="350" MinWidth="400" 
+        WindowStartupLocation="CenterScreen"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="34"/>
+            <RowDefinition Height="34"/>
+            <RowDefinition Height="34"/>
+            <RowDefinition  Height="34"/>
+            <RowDefinition Height="34"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.ColumnSpan="2" />
+        <Image 
+               Margin="10" 
+               HorizontalAlignment="Left" />
+        <TextBlock Grid.Row="0" Text="PONY EXPRESS"  Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   
+                   FontSize="20"
+                   FontWeight="Bold" />
+        <TextBlock  Text="Заказ №"  Grid.Row="1" Grid.Column="0"
+                    Grid.ColumnSpan="2"  x:Name="TextBlockOrderNumber"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   FontWeight="Bold" />
+
+        <TextBlock Text="Дата заказа"  Grid.Row="2" Grid.Column="0" 
+                   HorizontalAlignment="Left" Margin="10 0 0 0" 
+                   VerticalAlignment="Center"
+                  Style="{StaticResource item_textblock}"
+                   FontWeight="Bold" />
+        <TextBlock x:Name="TextBlockOrderCreateDate"
+                   Grid.Row="2" Grid.Column="1"  
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left" 
+                   Style="{StaticResource item_textblock}"
+                   FontWeight="Bold"  />
+        <TextBlock Text="Дата получения"  Grid.Row="3" Grid.Column="0" 
+                   HorizontalAlignment="Left" Margin="10 0 0 0" 
+                   VerticalAlignment="Center"
+                   Style="{StaticResource item_textblock}"
+                   FontWeight="Bold" />
+        <TextBlock x:Name="TextBlockOrderDeliveryDate" Grid.Row="3" 
+                   Grid.Column="1"  VerticalAlignment="Center" 
+                   HorizontalAlignment="Left" Style="{StaticResource item_textblock}"
+                   FontWeight="Bold"  />
+        <TextBlock Text="Пункт выдачи"  Grid.Row="4" Grid.Column="0" 
+                   HorizontalAlignment="Left" Margin="10 0 0 0" 
+                   VerticalAlignment="Center"
+                   Style="{StaticResource item_textblock}"
+                   FontWeight="Bold" />
+        <TextBlock x:Name="TextBlockPickupPoint" Grid.Row="4"
+                   Grid.Column="1" VerticalAlignment="Center" 
+                   HorizontalAlignment="Left" Style="{StaticResource item_textblock}"
+                   FontWeight="Bold"  />
+        <TextBlock Text="Код получения"  Grid.Row="5" Grid.Column="0" 
+                   HorizontalAlignment="Left" Margin="10 0 0 0" 
+                   VerticalAlignment="Center"
+                   Style="{StaticResource item_textblock}"
+                   FontWeight="Bold" />
+        <TextBlock x:Name="TextBlockOrderGetCode" Grid.Row="5" 
+                   Grid.Column="1" VerticalAlignment="Center" 
+                   HorizontalAlignment="Left" Style="{StaticResource item_textblock}"
+                   FontWeight="Bold"  />
+
+
+
+
+        <TextBlock x:Name="TextBlockTotalCost" Grid.Row="6"
+                   Grid.ColumnSpan="2"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center">
+            <Button Width="100" Height="30" 
+                    Content="OK" 
+                    x:Name="BtnOk" 
+                    Click="BtnOk_Click"/>
+            <Button x:Name="BtnSavePDF"  
+                    Content="Сохранить в PDF" Width="160"
+                    Click="BtnSavePDF_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
