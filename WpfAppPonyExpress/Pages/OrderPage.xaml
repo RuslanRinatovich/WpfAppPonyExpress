@@ -64,7 +64,7 @@ SelectedValuePath="OrderId" Grid.Row="2" Grid.Column="0" SelectionChanged="ListB
                                 <TextBlock Margin="2" FontSize="16" 
                                            Text="{Binding Path=Weight, StringFormat={}{0} кг.}" 
                                            Width="Auto" HorizontalAlignment="Left" 
-                                           TextDecorations="{Binding GetTextDecoration}" Foreground="Red"/>
+                                           Foreground="Red"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="2" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
