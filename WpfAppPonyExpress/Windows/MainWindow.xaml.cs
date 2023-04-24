@@ -123,6 +123,7 @@ namespace WpfAppPonyExpress
                 PackAccount.Visibility = Visibility.Visible;
                 TextBlockUserName.Visibility = Visibility.Visible;
                 AddNewOrder.Visibility = Visibility.Visible;
+                BtnOrder.Visibility = Visibility.Collapsed;
 
                 if (Manager.CurrentUser.RoleId == 1)
                 {

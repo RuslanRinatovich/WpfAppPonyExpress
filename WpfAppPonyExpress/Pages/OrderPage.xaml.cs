@@ -60,7 +60,8 @@ namespace WpfAppPonyExpress.Pages
                 currentData = currentData.Where(p => p.OrderStatusID == (ComboStatus.SelectedItem as OrderStatu).Id).ToList();
 
             // выбор тех товаров, в названии которых есть поисковая строка
-            currentData = currentData.Where(p => p.OrderID.ToString().ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            currentData = currentData.Where(p => p.OrderID.ToString().ToLower().
+            Contains(TBoxSearch.Text.ToLower())).ToList();
 
             // сортировка
             if (ComboSort.SelectedIndex >= 0)
